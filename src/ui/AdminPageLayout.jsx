@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
 import AdminHeader from "./AdminHeader";
-// import DashBoardLayout from "../components/DashboardLayout";
-// import TenancyApplications from "../pages/TenancyApplications";
 import { Outlet } from "react-router-dom";
 
 const StyledAppLayout = styled.div`
@@ -27,8 +25,7 @@ function AdminPageLayout() {
       <Sidebar />
       <AdminHeader />
       <Main>
-        {/* <TenancyApplications></TenancyApplications> */}
-        {/* <DashBoardLayout /> */}
+        {/* <Profile /> */}
         <Outlet />
       </Main>
     </StyledAppLayout>

@@ -89,8 +89,14 @@ const StyledFileInput = styled.input.attrs({ type: "file" })`
     border-radius: 5px;
   }
 `;
-
-const MultiStepForm = ({ steps, onSubmit }) => {
+const ErrorMessage = styled.span`
+  color: #ef4444;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin-top: 4px;
+`;
+const MultiStepForm = ({ steps, onSubmit, isLoading }) => {
   const {
     register,
     handleSubmit,
@@ -106,11 +112,8 @@ const MultiStepForm = ({ steps, onSubmit }) => {
   };
 
   const onFormSubmit = (data) => {
-    // Handle form submission logic
     onSubmit(data);
-    setCurrentStep((prevStep) => prevStep + 1);
-    // setCurrentStep(1);
-    //
+    setCurrentStep(1);
   };
 
   return (
@@ -125,24 +128,33 @@ const MultiStepForm = ({ steps, onSubmit }) => {
                   <InputContainer>
                     <InputLabel>{input.label}</InputLabel>
                     {input.type === "textarea" ? (
-                      <StyledTextarea {...register(input.fieldName)} />
+                      <StyledTextarea
+                        {...register(input.fieldName, {
+                          required: "this field is required",
+                        })}
+                      />
                     ) : input.type === "file" ? (
                       <StyledFileInput
                         type={input.type}
-                        {...register(input.fieldName)}
+                        {...register(input.fieldName, {
+                          required: "this field is required",
+                        })}
                       />
                     ) : (
                       <StyledInput
                         // placeholder={placeholder}
                         type={input.type}
-                        {...register(input.fieldName)}
+                        {...register(input.fieldName, {
+                          required: "this field is required",
+                        })}
                       ></StyledInput>
                     )}
+                    {errors[input.fieldName] && (
+                      <ErrorMessage>
+                        {errors[input?.fieldName].message}
+                      </ErrorMessage>
+                    )}
                   </InputContainer>
-
-                  {errors[input.fieldName] && (
-                    <span>{errors.input.fieldName.message}</span>
-                  )}
                 </div>
               ))}
               <StyledBox>
@@ -157,7 +169,9 @@ const MultiStepForm = ({ steps, onSubmit }) => {
                   </Button>
                 )}
                 {currentStep === steps.length && (
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit" disabled={isLoading}>
+                    Submit
+                  </Button>
                 )}
               </StyledBox>
             </div>

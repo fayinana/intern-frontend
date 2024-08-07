@@ -1,9 +1,13 @@
+/* eslint-disable react/prop-types */
 // let { fullName, email, password, confirmPassword, role ,userAddress} = userdata;
 
 import styled, { css } from "styled-components";
 // import Input from "../ui/Input";
 // import Button from "../ui/Button";
 import MultiStepForm from "../components/MultiStepForm";
+import { createUser } from "../services/apiUser";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const SignUpContainer = styled.div`
   width: 100%;
@@ -106,19 +110,42 @@ const steps = [
     ],
   },
 ];
-const handleFormSubmit = (data) => {
-  console.log("Form data:", data);
-};
 
-function SignUp() {
+function SignUp({ onCloseModal }) {
   // return <MultiStepForm steps={steps} onSubmit={handleFormSubmit} />;
+  // const newUser = {
+  //   fullName: "John Doe",
+  //   email: "john@example.com",
+  //   password: "password123",
+  //   confirmPassword: "password123",
+  //   role: "user",
+  //   userAddress: "123 Main St, Anytown USA",
+  // };
+
+  const { isLoading, mutate: addUser } = useMutation({
+    mutationFn: (newUser) => createUser(newUser),
+    onSuccess: () => {
+      console.log("login page");
+      toast.success("user signed up successfully");
+      onCloseModal();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+  const handleFormSubmit = (data) => {
+    addUser(data);
+  };
+
   return (
     <SignUpContainer>
       <Title>welcome</Title>
       <Text>enter your detail below to create your account and get start</Text>
-      <MultiStepForm steps={steps} onSubmit={handleFormSubmit} />
-      {/* <Forgot boldness="md">forgot password</Forgot> */}
-      {/* <Button>sign up</Button> */}
+      <MultiStepForm
+        steps={steps}
+        onSubmit={handleFormSubmit}
+        isLoading={isLoading}
+      />
       <NoAccountOrHaveAccount>
         have an account?
         <Forgot boldness="lg"> login</Forgot>

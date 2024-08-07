@@ -1,4 +1,5 @@
 import { MdHomeWork } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const StyledLogo = styled.span`
@@ -35,10 +36,12 @@ StyledLogo.defaultProps = {
 };
 function Logo() {
   return (
-    <StyledLogo>
-      <MdHomeWork />
-      <LogoName>Adama Home</LogoName>
-    </StyledLogo>
+    <NavLink to="/">
+      <StyledLogo>
+        <MdHomeWork />
+        <LogoName>Adama Home</LogoName>
+      </StyledLogo>
+    </NavLink>
   );
 }
 

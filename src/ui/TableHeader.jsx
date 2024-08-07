@@ -9,6 +9,8 @@ const StyledTable = styled.div`
   background-color: var(--color-grey-0);
   border-radius: 7px;
   overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const CommonRow = styled.div`

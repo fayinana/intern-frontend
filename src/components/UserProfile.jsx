@@ -17,9 +17,10 @@ const ProfileContainer = styled.div`
   border-radius: 10px;
   background: var(--color-grey-0);
   padding: 2rem;
-  margin: 5rem;
   text-align: center;
   box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
 `;
 
 const Name = styled.p`

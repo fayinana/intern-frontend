@@ -5,7 +5,7 @@ const FilterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 900px;
+  max-width: 900px;
   background: var(--color-grey-0);
   padding: 1.5rem 2rem;
   border-radius: 5px;

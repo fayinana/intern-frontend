@@ -1,0 +1,154 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "fullName": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "confirmPassword": "password123",
+      "role": "user",
+      "userAddress": "123 Main St, Anytown USA"
+    },
+    {
+      "id": "e590",
+      "fullName": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "confirmPassword": "password123",
+      "role": "user",
+      "userAddress": "123 Main St, Anytown USA"
+    },
+    {
+      "id": "c550",
+      "fullName": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "confirmPassword": "password123",
+      "role": "user",
+      "userAddress": "123 Main St, Anytown USA"
+    },
+    {
+      "id": "9d48",
+      "name": "Ananiya Fekede",
+      "email": "edekefayinana@gmail.com",
+      "phone": "0982379859",
+      "address": "dukem",
+      "password": "0982379859",
+      "conform-password": {
+        "0": {}
+      }
+    },
+    {
+      "id": "ceaa",
+      "fullName": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "confirmPassword": "password123",
+      "role": "user",
+      "userAddress": "123 Main St, Anytown USA"
+    },
+    {
+      "id": "977c",
+      "name": "Ananiya Fekede",
+      "email": "edekefayinana@gmail.com",
+      "phone": "0982379859",
+      "address": "dukem",
+      "password": "0982379859",
+      "conform-password": {}
+    },
+    {
+      "id": "d16c",
+      "name": "Ananiya Fekede",
+      "email": "edekefayinana@gmail.com",
+      "phone": "",
+      "address": "",
+      "password": "",
+      "conform-password": {}
+    },
+    {
+      "id": "c2fd",
+      "name": "Ananiya Fekede",
+      "email": "edekefayinana@gmail.com",
+      "phone": "0982379859",
+      "address": "dukem",
+      "password": "0982379859",
+      "conform-password": {
+        "0": {}
+      }
+    },
+    {
+      "id": "adcb",
+      "password": "saf",
+      "conform-password": {
+        "0": {}
+      },
+      "phone": "",
+      "address": "",
+      "name": "",
+      "email": ""
+    },
+    {
+      "id": "c5d3",
+      "password": "saf",
+      "conform-password": {
+        "0": {}
+      },
+      "phone": "",
+      "address": "",
+      "name": "",
+      "email": ""
+    },
+    {
+      "id": "3899",
+      "password": "kjhgsd",
+      "conform-password": {
+        "0": {}
+      }
+    },
+    {
+      "id": "4d7d",
+      "name": "Ananiya Fekede",
+      "email": "edekefayinana@gmail.com",
+      "phone": "0982379859",
+      "address": "dukem",
+      "password": "0982379859",
+      "conform-password": {
+        "0": {}
+      }
+    },
+    {
+      "id": "018f",
+      "name": "Ananiya Fekede",
+      "email": "fekedeananiya@gmail.com",
+      "phone": "0909219975",
+      "address": "dukem",
+      "password": "0909219975",
+      "conform-password": {
+        "0": {}
+      }
+    },
+    {
+      "id": "ad94",
+      "name": "qqqqqqqqq",
+      "email": "ananiyafekede@gmail.com",
+      "phone": "",
+      "address": "",
+      "password": "1234",
+      "conform-password": {
+        "0": {}
+      }
+    },
+    {
+      "id": "3aeb",
+      "phone": "",
+      "address": "",
+      "password": "a",
+      "conform-password": {
+        "0": {}
+      }
+    }
+  ],
+  "routes": {
+    "/users/signup": "/users"
+  }
+}

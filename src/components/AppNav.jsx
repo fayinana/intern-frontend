@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import styled from "styled-components";
 import Logo from "../ui/Logo";
 import Nav from "../ui/Nav";
@@ -6,6 +7,9 @@ import DarkModeToggle from "./DarkModeToggle";
 import Modal from "../ui/Modal";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import { useAuth } from "../context/AuthContext";
+import NavProfile from "./NavProfile";
+import { FaHeart } from "react-icons/fa";
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -29,32 +33,37 @@ const Container = styled.ul`
   gap: 1.5rem;
 `;
 function AppNav() {
+  const { isAuthenticated } = useAuth();
   return (
     <StyledNav>
       <Container>
         <Logo />
-        <Nav to="rent">rent</Nav>
-        <Nav to="profile">profile</Nav>
-        <Nav to="sell">sell</Nav>
+        <Nav to="/users/rent">rent</Nav>
+        <Nav to="/users/profile">profile</Nav>
+        <Nav to="/users/sell">sell</Nav>
       </Container>
+
       <Container>
-        <Modal>
-          <Modal.Open opens="login">
-            <Button variation="secondary">login</Button>
-          </Modal.Open>
-          <Modal.Window name="login">
-            <Login />
-          </Modal.Window>
-        </Modal>
-        <Modal>
-          <Modal.Open opens="signUp">
-            <Button>signup</Button>
-          </Modal.Open>
-          <Modal.Window name="signUp">
-            <SignUp />
-          </Modal.Window>
-        </Modal>
+        <FaHeart />
         <DarkModeToggle />
+        {!isAuthenticated ? (
+          <Modal>
+            <Modal.Open opens="login">
+              <Button variation="secondary">login</Button>
+            </Modal.Open>
+            <Modal.Window name="login">
+              <Login />
+            </Modal.Window>
+            <Modal.Open opens="signUp">
+              <Button>signup</Button>
+            </Modal.Open>
+            <Modal.Window name="signUp">
+              <SignUp />
+            </Modal.Window>
+          </Modal>
+        ) : (
+          <NavProfile />
+        )}
       </Container>
     </StyledNav>
   );

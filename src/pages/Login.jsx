@@ -1,8 +1,16 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import styled, { css } from "styled-components";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import SignUp from "./SignUp";
+import { useMutation } from "@tanstack/react-query";
+import { signInUser } from "../services/apiUser";
+import toast from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
+import { replace, useNavigate } from "react-router-dom";
 
 const Title = styled.h2`
   color: var(--color-grey-900);
@@ -67,7 +75,28 @@ const LoginContainer = styled.div`
   row-gap: 1rem;
 `;
 
-function Login() {
+function Login({ onCloseModal }) {
+  const navigate = useNavigate();
+  const { authenticate, isAuthenticated } = useAuth();
+  const { isLoading, mutate: logIn } = useMutation({
+    mutationFn: signInUser,
+    onError: (err) => toast.error(err.message),
+    onSuccess: () => {
+      toast.success("user login successfully");
+      authenticate("ananiya");
+      onCloseModal?.();
+    },
+  });
+  function handleLogIn() {
+    logIn("123", "123");
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/users", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
   return (
     <LoginContainer>
       <Title>welcome back</Title>
@@ -75,17 +104,20 @@ function Login() {
       <Input label="email" placeholder="test@gmail.com" />
       <Input label="password" type="password" />
       <Forgot boldness="md">forgot password</Forgot>
-      <Button>log in</Button>
+      <Button disabled={isLoading} onClick={handleLogIn}>
+        log in
+      </Button>
       <NoAccountOrHaveAccount>
         do not have an account?
-        <Modal>
-          <Modal.Open>
-            <Forgot boldness="lg"> sign up</Forgot>
-          </Modal.Open>
-          <Modal.Window>
+        <Forgot boldness="lg" onClick={() => onCloseModal()}>
+          sign up
+        </Forgot>
+        {/* <Modal>
+          <Modal.Open opens="sign-up-2"></Modal.Open>
+          <Modal.Window name="sign-up-2">
             <SignUp />
           </Modal.Window>
-        </Modal>
+        </Modal> */}
       </NoAccountOrHaveAccount>
     </LoginContainer>
   );
